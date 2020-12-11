@@ -1,0 +1,18 @@
+#아마존 S3 사용하기 위함
+pip install boto3
+pip install django-storages
+
+#RESTful api
+pip install djangorestframework
+
+#SQL
+pip install mysqlclient
+
+#Django
+pip install django
+
+#업로드 확인
+python .\manage.py collectstatic
+
+#이미지
+pip install Pillow
