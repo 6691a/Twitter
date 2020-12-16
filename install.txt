@@ -16,3 +16,6 @@ python .\manage.py collectstatic
 
 #이미지
 pip install Pillow
+
+#react page
+yarn add react-router-dom

@@ -1,0 +1,49 @@
+.login {
+  width: 57rem;
+  height: 38rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  width: 3.6em;
+  height: 3.7em;
+  object-fit: cover;
+  margin-top: 2rem;
+}
+
+.text {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 23px;
+}
+
+.input_field {
+  padding: 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.input_label_email,
+.input_label_password {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 0.1rem solid #c4cfd6;
+  border-radius: 0.4rem;
+  padding: 0.3rem 0.4rem;
+  margin: 1rem 0;
+}
+
+.input_text {
+  color: #5b7083;
+  font-size: 1.3rem;
+}
+input {
+  height: 2.5rem;
+  border: none;
+  font-size: 1.6rem;
+}
+/* */
