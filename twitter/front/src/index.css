@@ -5,3 +5,7 @@ html {
 body {
   margin: 0;
 }
+* {
+  /* 패딩을 줄때도 동일한 폭을 갖기 위함 */
+  box-sizing: border-box;
+}

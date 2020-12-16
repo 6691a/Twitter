@@ -1,6 +1,6 @@
 .login {
-  width: 57rem;
-  height: 38rem;
+  width: 60rem;
+  height: 40rem;
   margin: 0 auto;
   text-align: center;
 }
@@ -26,6 +26,7 @@ h1 {
   display: flex;
   flex-direction: column;
 }
+
 .input_label_email,
 .input_label_password {
   display: flex;
@@ -41,9 +42,75 @@ h1 {
   color: #5b7083;
   font-size: 1.3rem;
 }
+
 input {
   height: 2.5rem;
   border: none;
   font-size: 1.6rem;
+  outline: none;
 }
-/* */
+
+.input_label_email:focus-within {
+  box-shadow: 0 0 0 0.2rem #1da1f2;
+}
+
+.input_label_email:focus-within .input_text {
+  color: #1da1f2;
+}
+
+.input_label_password:focus-within {
+  box-shadow: 0 0 0 0.2rem #1da1f2;
+}
+.input_label_password:focus-within .input_text {
+  color: #1da1f2;
+}
+
+.submit_Btn {
+  background-color: #8ed0f9;
+  height: 5rem;
+  width: 100%;
+  border: none;
+  border-radius: 50%;
+  border-radius: 45px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  cursor: default;
+}
+.submit_Btn:disabled {
+  background-color: #1da1f2;
+  cursor: pointer;
+  /* height: 5rem;
+  width: 100%;
+  border: none;
+  border-radius: 50%;
+  border-radius: 45px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin: 1rem 0; */
+}
+
+/* #1da1f2 */
+.info {
+  padding: 2rem 0;
+  font-size: 1.5rem;
+}
+.info_text {
+  margin: 0 0.5rem;
+  color: #6495e2;
+  cursor: pointer;
+}
+.info_text:hover {
+  text-decoration: underline;
+}
+
+.info_text_space {
+  margin: 0 0.5rem;
+  color: #6495e2;
+}
