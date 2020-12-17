@@ -66,37 +66,27 @@ input {
 }
 
 .submit_Btn {
-  background-color: #8ed0f9;
+  background-color: #1da1f2;
   height: 5rem;
   width: 100%;
   border: none;
   border-radius: 50%;
   border-radius: 45px;
-  cursor: pointer;
   outline: none;
   color: white;
   font-weight: bolder;
   font-size: 1.5rem;
   margin: 1rem 0;
-  cursor: default;
+  cursor: pointer;
 }
 .submit_Btn:disabled {
-  background-color: #1da1f2;
-  cursor: pointer;
-  /* height: 5rem;
-  width: 100%;
-  border: none;
-  border-radius: 50%;
-  border-radius: 45px;
-  cursor: pointer;
-  outline: none;
-  color: white;
-  font-weight: bolder;
-  font-size: 1.5rem;
-  margin: 1rem 0; */
+  background-color: #8ed0f9;
+  cursor: default;
+}
+.submit_Btn:hover:enabled {
+  background-color: #1a91da;
 }
 
-/* #1da1f2 */
 .info {
   padding: 2rem 0;
   font-size: 1.5rem;
