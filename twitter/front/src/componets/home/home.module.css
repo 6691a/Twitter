@@ -1,0 +1,119 @@
+.content {
+  display: flex;
+}
+
+.content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+/* left */
+
+.left {
+  background-color: #74cafe;
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.background_image {
+  object-fit: cover;
+  max-width: 150%;
+  width: 150%;
+  height: 100rem;
+  object-position: 50% -20rem;
+}
+
+.comment {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text {
+  font-size: 2rem;
+  color: white;
+  font-weight: bolder;
+}
+
+.comment ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comment li {
+  margin-bottom: 4rem;
+}
+
+.comment li img {
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  margin-right: 2rem;
+  vertical-align: top;
+}
+.comment li span {
+  display: inline-block;
+  width: 25rem;
+}
+
+/* right */
+
+.right {
+  width: 50%;
+  /* height: 100vh; */
+  margin: 1.5rem;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.login {
+  width: 38rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+}
+
+.login img {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.login h1 {
+  font-size: 3rem;
+  margin-bottom: 4rem;
+}
+
+.signup_Btn,
+.login_Btn {
+  background-color: #1da1f2;
+  height: 3.8rem;
+  width: 100%;
+  border: none;
+  border-radius: 50%;
+  border-radius: 45px;
+  outline: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.signup_Btn:hover {
+  background-color: #1a91da;
+}
+
+.login_Btn {
+  background-color: white;
+  color: #1da1f2;
+  border: 0.1rem solid #1da1f2;
+}
+
+.login_Btn:hover {
+  background-color: #e8f5fe;
+}
