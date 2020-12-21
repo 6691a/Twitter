@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './home.module.css';
+import { useHistory } from 'react-router-dom';
 
 const Home = (props) => {
+    const signupHis = useHistory();
+    const loginHis = useHistory();
 
     return(
         <div className={styles.content}>
@@ -33,8 +36,8 @@ const Home = (props) => {
                     
                     <div>
                         <h2>오늘 트위터에 가입하세요.</h2>
-                        <button className={styles.signup_Btn} type="submit">가입하기</button>
-                        <button className={styles.login_Btn} type="submit">로그인</button>
+                        <button className={styles.signup_Btn} type="submit" onClick={() => {signupHis.push('/signup');}}>가입하기</button>
+                        <button className={styles.login_Btn} type="submit" onClick={() => {loginHis.push('/login');}}>로그인</button>
                     </div>
                 </div>
             </div>

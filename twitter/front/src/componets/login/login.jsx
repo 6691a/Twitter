@@ -1,16 +1,17 @@
 import React, { useRef, useState } from 'react';
 import styles from './login.module.css';
+import { useHistory } from 'react-router-dom';
 
 const Login = (props) => {
     const emailRef = useRef();
     const passwordRef = useRef();
+    const signupHis = useHistory();
     const [disable, setDisable] = useState(true);
 
     const handleInput = () => {
         const email = emailRef.current.value.length;
         const password = passwordRef.current.value.length;
         email > 0 && password > 0 ? setDisable(false) : setDisable(true)
-        console.log(disable);
     }
     return(
     <div className={styles.login}>
@@ -20,11 +21,11 @@ const Login = (props) => {
             <form action="">
                 <label className={styles.input_label_email}>
                     <span className={styles.input_text}>이메일</span>
-                    <input className ={styles.email_input}ref={emailRef} type="email" onChange={handleInput}/> 
+                    <input className ={styles.email_input} ref={emailRef} type="email" onChange={handleInput}/> 
                 </label>
                 <label className={styles.input_label_password}>
                     <span className={styles.input_text}>비밀번호</span>
-                    <input  ref={passwordRef} type="password" onChange={handleInput}/>
+                    <input ref={passwordRef} type="password" onChange={handleInput}/>
                 </label>
                 <button className={styles.submit_Btn} type="submit" 
                 disabled = {disable}
@@ -33,7 +34,7 @@ const Login = (props) => {
             <div className={styles.info}>
                 <span className={styles.info_text}>비밀번호를 잊으셨나요?</span>
                 <span className={styles.info_text_space}>·</span>
-                <span className={styles.info_text}>트위터 가입</span>
+                <span className={styles.info_text} onClick={() => {signupHis.push('/signup');}}>트위터 가입</span>
             </div>
         </div> 
     </div>
