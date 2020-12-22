@@ -103,17 +103,17 @@ const Signup = (props) =>{
                             <span className={styles.comment}>이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관 없이 나의 연령을 확인하세요.</span>
                                 <div className={styles.select_box}>
                                     <span className={styles.option_text}>월</span>
-                                    <select className={styles.month} onChange={(e) => {refSelect(e,'Month')}}>
+                                    <select  className={styles.month} onChange={(e) => {refSelect(e,'Month')}}>
                                         <option value="" selected disabled > </option>
                                         {getMonth()}
                                     </select>
                                     <span className={styles.option_text}>일</span>
-                                    <select className={styles.date} onChange={(e) => {refSelect(e,'Date')}}>
+                                    <select  className={styles.date} onChange={(e) => {refSelect(e,'Date')}}>
                                         <option value="" selected disabled> </option>
                                         {getDate()}
                                     </select>
                                     <span className={styles.option_text}>년</span>
-                                    <select className={styles.year} onChange={(e) => {refSelect(e,'Year')}}>
+                                    <select  className={styles.year} onChange={(e) => {refSelect(e,'Year')}}>
                                         <option value="" selected disabled> </option>
                                         {getYear()}
                                     </select>
