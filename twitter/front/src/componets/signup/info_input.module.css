@@ -202,3 +202,22 @@ select-arrow {
   font-weight: bolder;
   font-size: 1.5rem;
 }
+
+/*congirm  */
+
+.input_label_key {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background-color: #f7f9fa;
+  border-bottom: 0.1rem solid #1da1f2;
+  padding: 0.3rem 0.4rem;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+}
+.input_key_text {
+  color: #1da1f2;
+}
+.key_input {
+  background-color: #f7f9fa;
+}

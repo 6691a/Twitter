@@ -10,7 +10,7 @@ class View(generics.ListAPIView):
     serializer_class = TweetSerializer
 
 
-def tweet_home_view(self):
+def tweet_home_view(request):
     tweet = Tweet.objects.all()
     serializer = TweetSerializer(tweet, many=True)
 
@@ -18,4 +18,4 @@ def tweet_home_view(self):
 
 
 def tweet_detail_view(self, id):
-    spass
+    pass

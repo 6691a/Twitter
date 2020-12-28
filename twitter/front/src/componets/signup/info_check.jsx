@@ -1,5 +1,4 @@
 import React from 'react';
-// import styles from './info_check.module.css';
 import styles from './info_input.module.css';
 
 
@@ -8,11 +7,16 @@ const Info_check = (props) => {
     const bakcClick = () =>{
         props.setState('input');
     }
+
+    const handleNext = (e) => {
+        e.preventDefault()
+        props.setState('confirm');
+    }
     
     return(
             <div className={styles.background}>
                 <div className={styles.sinup}>
-                    <form action="" >
+                    <form action="" onSubmit={handleNext}>
                         <div className={styles.title}>
                             <div className={styles.Btn_bg}>  
                                 <img className={styles.back_Btn} onClick={bakcClick} src="/images/left-arrow.svg" alt=""/> 

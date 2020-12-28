@@ -1,40 +1,44 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './info_input.module.css';
 
 const Info_confirm = (props) => {
+    const confirmRef = useRef();
+
+    const [disable, setDisable] = useState(true);
+
+    const handleNext = (e) => {
+        e.preventDefault()
+        props.setState('profile');
+    }
+    
     const bakcClick = () =>{
         props.setState('check');
+    }
+
+    const handleInput = () => {
+        const key = confirmRef.current.value.length;
+        key > 0  ? setDisable(false) : setDisable(true)
     }
 
     return(
         <div className={styles.background}>
             <div className={styles.sinup}>
-                <form action="" >
+                <form action="" onChange={ handleInput} onSubmit={handleNext}>
                     <div className={styles.title}>
-                        <div className={styles.Btn_bg}>  
-                            <img className={styles.back_Btn} onClick={bakcClick} src="/images/left-arrow.svg" alt=""/> 
-                        </div>
+                        <div className={styles.container_left} ></div>
                         <img className={styles.logo} src="/images/twitter.svg" alt=""/>
-                        <div className={styles.container_right} >
+                        <button className={styles.next_Btn} disabled={disable}  type='submit'>다음</button>
 
-                        </div>
                     </div>
                     <div className={styles.body}>
-                        <h1>계정을 생성하세요</h1>
-                        <label className={styles.input_label_email}>
-                            <span className={styles.input_text}>이름</span>
-                            <input className ={styles.name_input} value={props.name} readOnly onClick={bakcClick} type="text"/> 
+                        <h1>코드를 보내 드렸습니다.</h1>
+                        <span className={styles.sigup_comment}>{`${props.email} 인증을 위해 아래에 입력하세요.`}</span>
+
+                        <label className={styles.input_label_key}>
+                            <span className={styles.input_key_text}>확인 코드</span>
+                            <input ref={confirmRef} className ={styles.key_input} type="text"/> 
                         </label>
-                        <label className={styles.input_label_password}>
-                            <span className={styles.input_text}>이메일</span>
-                            <input className ={styles.email_input} value={props.email} readOnly onClick={bakcClick}  type="email"/> 
-                        </label>
-                        <label className={styles.input_label_password}>
-                            <span className={styles.input_text}>생년월일</span>
-                            <input className ={styles.email_input} value={props.birthday} readOnly onClick={bakcClick} type="email"/> 
-                        </label>
-                        <span className={styles.sigup_comment}>가입 시 이용약관 및 쿠키 사용을 포함한 개인정보 처리방침에 동의하게 됩니다. 개인정보 설정에 따라 이메일 주소 또는 휴대폰 번호로 사람들이 나를 찾을 수 있습니다.</span>
-                        <button className={styles.signup_Btn}  type='submit'>가입</button>
+                        {/* <span className={styles.input_key_text}>이메일을 받지 못하셨나요?</span> */}
                     </div>
                 </form>                    
             </div>

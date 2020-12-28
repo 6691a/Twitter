@@ -1,6 +1,12 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 from datetime import datetime
+
+
+def get_UUID():
+    id = '@'
+    return id + str(uuid.uuid4().hex)
 
 
 class UserManager(BaseUserManager):
@@ -42,8 +48,10 @@ class User(AbstractBaseUser):
         verbose_name='email',
         max_length=255,
         unique=True,
+        db_index=True,
     )
-    user_id = models.CharField(max_length=50, unique=True)
+    user_id = models.CharField(
+        blank=True, max_length=50, unique=True, default=get_UUID)
     birthday = models.DateField()
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -52,6 +60,7 @@ class User(AbstractBaseUser):
     image = models.ImageField(
         upload_to=upload_to,
         default='default/default_profile_400x400.png')
+
     USERNAME_FIELD = 'email'
     # REQUIRED_FIELDS = ['birthday']
 

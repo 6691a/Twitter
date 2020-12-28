@@ -57,7 +57,6 @@ const Info_input = (props) => {
         const birthday = year + '.' + month+ '.' + date
         props.setBirthday(birthday);
         props.setState('check');
-
     }
 
     const getMonth = () => {
