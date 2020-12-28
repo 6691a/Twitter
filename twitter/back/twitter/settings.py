@@ -135,3 +135,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_FILE_STORAGE = 'twitter.s3media.MediaStorage'
+
+# Sand mail
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = setting.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = setting.EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'EMAIL_HOST_USER'

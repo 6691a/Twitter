@@ -18,7 +18,6 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             birthday=birthday,
         )
-
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -31,6 +30,7 @@ class UserManager(BaseUserManager):
         )
         user.is_admin = True
         user.is_staff = True
+        user.is_active = True
         user.save(using=self._db)
         return user
 
@@ -53,7 +53,7 @@ class User(AbstractBaseUser):
     user_id = models.CharField(
         blank=True, max_length=50, unique=True, default=get_UUID)
     birthday = models.DateField()
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     is_staff = models.BooleanField(default=False)
