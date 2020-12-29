@@ -6,6 +6,6 @@ urlpatterns = [
     path('', getUser_list),
     path('signup/', createUser),
     path('find/<str:email>/', findUser),
-
+    path('active/', active_user),
 
 ]

@@ -53,6 +53,7 @@ class User(AbstractBaseUser):
     user_id = models.CharField(
         blank=True, max_length=50, unique=True, default=get_UUID)
     birthday = models.DateField()
+    key = models.CharField(blank=True, null=True, max_length=50)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)

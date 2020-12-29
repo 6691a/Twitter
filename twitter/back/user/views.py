@@ -9,8 +9,12 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
+# token
+from rest_framework.authtoken.models import Token
+
 # email
 from django.core.mail import EmailMessage
+from django.template.loader import render_to_string, get_template
 
 
 def getUser_list(request):
@@ -36,16 +40,18 @@ def createUser(request):
         if password_validation(data['password']):
             return JsonResponse({"message": "비밀번호가 양식에 맞지 않습니다. status = 400"}, status=400)
 
-        user = CreateUserSerializer(data=data)
-
-        if not user.is_valid(raise_exception=True):
-            return JsonResponse({"message": "유저 인증 실패 status = 400"}, status=400)
-
         if User.objects.filter(email=data['email']).exists() == False:
             key = sendMail(data['email'])
-            # user.save()
-            return JsonResponse({"message": "유저 생성 성공 status = 201",
-                                 "key": key}, status=201)
+            data['key'] = key
+
+            user = CreateUserSerializer(data=data)
+
+            if not user.is_valid(raise_exception=True):
+                return JsonResponse({"message": "유저 인증 실패 status = 400"}, status=400)
+
+            user.save()
+
+            return JsonResponse({"message": "유저 생성 성공 status = 201"}, status=201)
         else:
             return JsonResponse({"message": "유저 생성 실패 email 중복 status = 400"}, status=400)
 
@@ -59,7 +65,8 @@ def activeUser(request):
         data = JSONParser().parse(request)
         query = User.objects.get(email=data['email'])
         query.is_active = True
-        return JsonResponse({"message": "이메일 인증 성공 status = 201", }, status=201)
+
+        # return JsonResponse({"message": "이메일 인증 성공 status = 201", }, status=201)
 
     return JsonResponse({"message": "잘못된 접근 입니다. status = 400"}, status=400)
 
@@ -80,10 +87,29 @@ def password_validation(password):
 def sendMail(to_email):
     key = random.randrange(100000, 1000000)
     mail_title = f'{key}가 내 트위터 인증 코드 입니다'
-    mail_body = f'''이메일 주소 확인하기
-    {key}'''
+    mail_body = get_template('signup_mail.html').render({"key": key})
     email = EmailMessage(mail_title, mail_body, to=[to_email])
-
-    email.send()
-
+    email.content_subtype = "html"
+    status = email.send()
+    if(status != 1):
+        return JsonResponse({"message": "이메일 송신 실패 status = 400"}, status=400)
     return key
+
+
+@csrf_exempt
+def active_user(request):
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+
+        user = User.objects.get(key=data['key'], email=data['email'])
+
+        if user:
+            user.is_active = True
+            user.key = "null"
+            user.save()
+
+            return JsonResponse({"message": "이메일 인증 성공 status = 200"}, status=200)
+        else:
+            return JsonResponse({"message": "User를 찾지 못함 status = 400"}, status=400)
+    else:
+        return JsonResponse({"message": "잘못된 접근 입니다. status = 400"}, status=400)

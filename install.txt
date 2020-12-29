@@ -19,3 +19,6 @@ pip install Pillow
 
 #react page
 yarn add react-router-dom
+
+#email CSS
+pip install django-inlinecss

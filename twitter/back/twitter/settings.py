@@ -22,9 +22,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # REST
     'rest_framework',
     'rest_framework.authtoken',
 
+    # Email CSS
+    'django_inlinecss',
+
+    # AWS S3
     'storages',
 
 
@@ -143,3 +149,12 @@ EMAIL_HOST_USER = setting.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = setting.EMAIL_HOST_PASSWORD
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'EMAIL_HOST_USER'
+
+# # token
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
