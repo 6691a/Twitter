@@ -33,12 +33,17 @@ INSTALLED_APPS = [
     # AWS S3
     'storages',
 
+    # CORS
+    'corsheaders',
 
     'user',
     'tweets'
 ]
 
 MIDDLEWARE = [
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -150,11 +155,19 @@ EMAIL_HOST_PASSWORD = setting.EMAIL_HOST_PASSWORD
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'EMAIL_HOST_USER'
 
-# # token
+# token
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    )
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.BasicAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#     )
+# }
+
+# CORS
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]

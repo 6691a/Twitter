@@ -27,7 +27,8 @@ def getUser_list(request):
 def findUser(request, email):
     if request.method == 'GET':
         if User.objects.filter(email=email).exists() == True:
-            return JsonResponse({'message': "이미 등록된 이메일입니다."}, status=401)
+            return JsonResponse({'message': "이미 등록된 이메일입니다.",
+                                 'email': email}, status=200)
         else:
             return JsonResponse({'message': "가입이 가능한 이메일입니다."}, status=200)
 

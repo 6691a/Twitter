@@ -22,3 +22,6 @@ yarn add react-router-dom
 
 #email CSS
 pip install django-inlinecss
+
+#통신을 위한
+pip install django-cors-headers

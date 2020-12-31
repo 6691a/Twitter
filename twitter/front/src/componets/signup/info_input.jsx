@@ -4,10 +4,11 @@ import styles from './info_input.module.css';
 const Info_input = (props) => {
     const emailRef = useRef();
     const nameRef = useRef();
-    const [month, setMonth] = useState(props.birthday ? props.birthday.split('.')[1] : "");
-    const [date, setDate] = useState(props.birthday ? props.birthday.split('.')[2] : "");
-    const [year, setYear] = useState(props.birthday ? props.birthday.split('.')[0] : "");
+    const [month, setMonth] = useState(props.birthday ? props.birthday.split('-')[1] : "");
+    const [date, setDate] = useState(props.birthday ? props.birthday.split('-')[2] : "");
+    const [year, setYear] = useState(props.birthday ? props.birthday.split('-')[0] : "");
     const [disable, setDisable] = useState(true);
+    const [email_Valid, setEmail_Valid] = useState(false);
 
     useEffect(() => {
         const email = emailRef.current.value.length;
@@ -54,9 +55,25 @@ const Info_input = (props) => {
         e.preventDefault()
         props.setName(nameRef.current.value);
         props.setEmail(emailRef.current.value);
-        const birthday = year + '.' + month+ '.' + date
+        const birthday = year + '-' + month+ '-' + date
         props.setBirthday(birthday);
-        props.setState('check');
+        // findUser();
+        !email_Valid && props.setState('password');
+    }
+   
+    const findUser = () =>{
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        if(emailRef.current.value) {
+            fetch(`http://127.0.0.1:8000/user/find/${emailRef.current.value}/`, requestOptions)
+                .then(response => response.json())
+                .then(result => result.hasOwnProperty('email') ? setEmail_Valid(true): setEmail_Valid(false))
+                .catch(error => console.log('error', error));
+        };
+
     }
 
     const getMonth = () => {
@@ -97,6 +114,8 @@ const Info_input = (props) => {
             
         return array;
     }
+
+
     return(
         <>
             <div className={styles.background}>
@@ -113,24 +132,29 @@ const Info_input = (props) => {
                                 <span className={styles.input_text}>이름</span>
                                 <input className ={styles.name_input} ref={nameRef} defaultValue ={defaultValue()[0]} type="text"/> 
                             </label>
+                               
                             <label className={styles.input_label_password}>
                                 <span className={styles.input_text}>이메일</span>
-                                <input className ={styles.email_input} ref={emailRef}  defaultValue ={defaultValue()[1]} type="text" /> 
+                                <input className ={styles.email_input} ref={emailRef}  defaultValue ={defaultValue()[1]} type="email" onChange={findUser} /> 
                             </label>
+
+                            {email_Valid && 
+                                <span className={styles.error_msg}>이미 등록된 이메일입니다.</span>
+                            } 
                             <h2>생년월일</h2>
                                 <span className={styles.comment}>이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관 없이 나의 연령을 확인하세요.</span>                                <div className={styles.select_box}> 
                                 <span className={styles.option_text}>월</span>
-                                <select defaultValue ={props.birthday ? props.birthday.split('.')[1] : ""}  className={styles.month} onChange={(e) => {refSelect(e,'Month')}}>
+                                <select defaultValue ={month}  className={styles.month} onChange={(e) => {refSelect(e,'Month')}}>
                                     <option value =""  disabled > </option>
                                     {getMonth()}
                                 </select>
                                 <span className={styles.option_text}>일</span>
-                                <select defaultValue ={props.birthday ? props.birthday.split('.')[2] : ""} className={styles.date} onChange={(e) => {refSelect(e,'Date')}}>
+                                <select defaultValue ={date} className={styles.date} onChange={(e) => {refSelect(e,'Date')}}>
                                     <option value ="" disabled> </option>
                                     {getDate()}
                                 </select>
                                 <span className={styles.option_text}>년</span>
-                                <select defaultValue ={props.birthday ? props.birthday.split('.')[0] : ""} className={styles.year} onChange={(e) => {refSelect(e,'Year')}}>
+                                <select defaultValue ={year} className={styles.year} onChange={(e) => {refSelect(e,'Year')}}>
                                     <option value =""  disabled> </option>
                                     {getYear()}
                                 </select>

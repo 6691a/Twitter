@@ -55,6 +55,11 @@
   margin: 0 2rem;
 }
 
+.error_msg {
+  color: red;
+  font-size: 1.2rem;
+}
+
 .input_label_email,
 .input_label_password {
   display: flex;
