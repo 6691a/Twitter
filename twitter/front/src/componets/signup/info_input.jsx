@@ -9,6 +9,7 @@ const Info_input = (props) => {
     const [year, setYear] = useState(props.birthday ? props.birthday.split('-')[0] : "");
     const [disable, setDisable] = useState(true);
     const [email_Valid, setEmail_Valid] = useState(false);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         const email = emailRef.current.value.length;
@@ -19,6 +20,10 @@ const Info_input = (props) => {
         date &&
         year ? setDisable(false) : setDisable(true)        
     },[month, date, year])
+    
+    useEffect(() => {
+        email_Valid && props.setState('password');
+    }, [email_Valid])
 
     const refSelect = (event, target) => {
         switch(target) {
@@ -41,26 +46,16 @@ const Info_input = (props) => {
         }     
     }
 
-    const handleInput = () => {
-        const email = emailRef.current.value.length;
-        const name = nameRef.current.value.length;
-        email > 0 && 
-        name > 0 &&
-        month &&
-        date &&
-        year ? setDisable(false) : setDisable(true)
-    }
-
     const handleNext = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         props.setName(nameRef.current.value);
         props.setEmail(emailRef.current.value);
         const birthday = year + '-' + month+ '-' + date
         props.setBirthday(birthday);
-        // findUser();
-        !email_Valid && props.setState('password');
+        findUser();
     }
-   
+
+
     const findUser = () =>{
         const requestOptions = {
             method: 'GET',
@@ -69,9 +64,19 @@ const Info_input = (props) => {
 
         if(emailRef.current.value) {
             fetch(`http://127.0.0.1:8000/user/find/${emailRef.current.value}/`, requestOptions)
-                .then(response => response.json())
-                .then(result => result.hasOwnProperty('email') ? setEmail_Valid(true): setEmail_Valid(false))
-                .catch(error => console.log('error', error));
+            .then(response => {
+                if(response.status === 201) {
+                    setEmail_Valid(false);
+                    setError(true);
+                }
+                else {
+                    setEmail_Valid(true)
+                }
+            })
+            .catch(error => console.log('error', error));
+                // .then(response => response.json())
+                // .then(result => result.hasOwnProperty('email') ? setEmail_Valid(true): setEmail_Valid(false))
+                // .catch(error => console.log('error', error));
         };
 
     }
@@ -118,9 +123,11 @@ const Info_input = (props) => {
 
     return(
         <>
+        <div>{`value:${email_Valid}`}</div>
+
             <div className={styles.background}>
                 <div className={styles.sinup}>
-                    <form action="" onChange={ handleInput} onSubmit={handleNext} >
+                    <form action=""  onSubmit={(e)=>{handleNext(e);}} >
                         <div className={styles.title}>
                             <div className={styles.container_left} ></div>
                             <img className={styles.logo} src="/images/twitter.svg" alt=""/>
@@ -132,15 +139,16 @@ const Info_input = (props) => {
                                 <span className={styles.input_text}>이름</span>
                                 <input className ={styles.name_input} ref={nameRef} defaultValue ={defaultValue()[0]} type="text"/> 
                             </label>
-                               
+
                             <label className={styles.input_label_password}>
                                 <span className={styles.input_text}>이메일</span>
-                                <input className ={styles.email_input} ref={emailRef}  defaultValue ={defaultValue()[1]} type="email" onChange={findUser} /> 
+                                <input className ={styles.email_input} ref={emailRef}  defaultValue ={defaultValue()[1]} type="email"  /> 
                             </label>
 
-                            {email_Valid && 
+                            {error && 
                                 <span className={styles.error_msg}>이미 등록된 이메일입니다.</span>
-                            } 
+                            }
+
                             <h2>생년월일</h2>
                                 <span className={styles.comment}>이 정보는 공개적으로 표시되지 않습니다. 비즈니스, 반려동물 등 계정 주제에 상관 없이 나의 연령을 확인하세요.</span>                                <div className={styles.select_box}> 
                                 <span className={styles.option_text}>월</span>

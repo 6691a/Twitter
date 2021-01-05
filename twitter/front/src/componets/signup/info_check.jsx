@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './info_input.module.css';
 
 
 const Info_check = (props) => {
+    const [disable, setDisable] = useState(false);
     
     const bakcClick = () =>{
         props.setState('input');
@@ -10,11 +11,15 @@ const Info_check = (props) => {
 
     const handleNext = (e) => {
         e.preventDefault()
-        props.setState('confirm');
+        setDisable(true);
+        
+        props.create_User("confirm");
     }
+
     
     return(
             <div className={styles.background}>
+                {`dis${disable}`}
                 <div className={styles.sinup}>
                     <form action="" onSubmit={handleNext}>
                         <div className={styles.title}>
@@ -23,7 +28,6 @@ const Info_check = (props) => {
                             </div>
                             <img className={styles.logo} src="/images/twitter.svg" alt=""/>
                             <div className={styles.container_right} >
-
                             </div>
                         </div>
                         <div className={styles.body}>
@@ -41,7 +45,7 @@ const Info_check = (props) => {
                                 <input className ={styles.email_input} value={props.birthday} readOnly onClick={bakcClick} type="email"/> 
                             </label>
                             <span className={styles.sigup_comment}>가입 시 이용약관 및 쿠키 사용을 포함한 개인정보 처리방침에 동의하게 됩니다. 개인정보 설정에 따라 이메일 주소 또는 휴대폰 번호로 사람들이 나를 찾을 수 있습니다.</span>
-                            <button className={styles.signup_Btn}  type='submit'>가입</button>
+                            <button className={styles.signup_Btn} disabled={disable}  type='submit'>가입</button>
                         </div>
                         
                     </form>                    

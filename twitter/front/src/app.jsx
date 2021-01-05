@@ -6,47 +6,65 @@ import Signup from './componets/signup/signup';
 import MySelect from './componets/mySelect';
 import { useEffect, useState } from 'react';
 import { getByText } from '@testing-library/react';
+import Loading from './loading/loading';
 
 
 
 
 function App() {
 
-  const [users,setUsers] = useState([]);
+  const [status,setStatus] = useState('app');
 
 
+  const render = () => {
+    switch (status) {
+      case 'loading':
+        return <Loading/>
 
-  // useEffect( () =>{
-  //   var requestOptions = {
-  //     method: 'GET',
-  //     redirect: 'follow'
-  //   };
+      case 'app':
+        return(
+        <Router>
+          <Switch>
+            <Route path={['/']} exact >
+              <Home setStatus={setStatus} />
+            </Route>
+          
+            <Route path="/login">
+              <Login setStatus={setStatus}/>
+            </Route>
     
-  //   fetch("http://localhost:8000/user/", requestOptions)
-  //     .then(response => response.text())
-  //     .then(result => console.log(result))
-  //     .catch(error => console.log('error', error));
-  // })
-
+            <Route path="/signup">
+              <Signup setStatus={setStatus}/>
+            </Route>
+            
+          </Switch>
+        </Router>
+      )
+      default:
+        
+    }
+  }
 
   return (
-    //<MySelect/>
-    <Router>
-      <Switch>
-        <Route path={['/']} exact >
-          <Home/>
-        </Route>
-      
-        <Route path="/login">
-          <Login/>
-        </Route>
 
-        <Route path="/signup">
-          <Signup/>
-        </Route>
+    {render}
+
+    // <Router>
+    //   <Switch>
+    //     <Route path={['/']} exact >
+    //       <Home/>
+    //     </Route>
+      
+    //     <Route path="/login">
+    //       <Login/>
+    //     </Route>
+
+    //     <Route path="/signup">
+    //       <Signup/>
+    //     </Route>
         
-      </Switch>
-    </Router>
+    //   </Switch>
+    // </Router>
     
   );
 }

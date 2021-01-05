@@ -11,25 +11,47 @@ const Signup = (props) =>{
     const [email, setEmail] = useState('');
     const [password, setPassword]  = useState('');
     const [birthday, setBirthday] = useState('');
-    const [state,setState] = useState('input');
-    const [user,setUser] = useState([]);
+    const [state,setState] = useState('profile');
     
+    const create_User = (state) => {
+        const myHeaders = new Headers();
+    
+        myHeaders.append("Content-Type", "application/json");
+            
+        const raw = JSON.stringify({"email":`${email}`,"birthday":`${birthday}`,"password":`${password}`});
+    
+        const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+    
+        fetch("http://127.0.0.1:8000/user/signup/", requestOptions)
+        .then(response => { 
+            response.status == 201 && setState(state)
+            })
+        .catch(error => console.log('error', error));
+        }
+
     const render = (setate) =>{
         switch(setate) {
             case 'input':
                 return name && email && birthday ? 
                 <Info_input email={email} name={name} birthday={birthday} setEmail={setEmail} setName={setName} setBirthday={setBirthday} setState={setState}/> :
                 <Info_input setEmail={setEmail} setName={setName} setBirthday={setBirthday} setState={setState}/>
+
             case 'password':
                 return <Info_password setPassword={setPassword} setState={setState}/>
+
             case 'check':
-                return <Info_check email={email} name={name} birthday={birthday} setState={setState}/>
+                return <Info_check email={email} name={name} birthday={birthday} setState={setState} create_User={create_User}/>
 
             case 'confirm':
                 return <Info_confirm email={email} setState={setState}/>
                 
             case 'profile':
-                return <Info_profile setState={setState}/>
+                return <Info_profile email={email} setState={setState}/>
 
             default :
                 return <Info_input setEmail={setEmail} setName={setName} setBirthday={setBirthday}/>
@@ -38,6 +60,7 @@ const Signup = (props) =>{
     }
     return(
         <>  
+        {state}
             {render(state)}
         </>
     )

@@ -23,3 +23,11 @@ class CreateUserSerializer(serializers.Serializer):
         user.set_password(data['password'])
         user.save()
         return user
+
+
+class UserImageSerializer(serializers.ModelSerializer):
+    img = serializers.ImageField(use_url=True)
+
+    class Meta:
+        model = User
+        fields = ['image']

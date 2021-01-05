@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
+from rest_framework.views import APIView
+from rest_framework.parsers import FileUploadParser
 
 # token
 from rest_framework.authtoken.models import Token
@@ -28,7 +30,7 @@ def findUser(request, email):
     if request.method == 'GET':
         if User.objects.filter(email=email).exists() == True:
             return JsonResponse({'message': "이미 등록된 이메일입니다.",
-                                 'email': email}, status=200)
+                                 'email': email}, status=201)
         else:
             return JsonResponse({'message': "가입이 가능한 이메일입니다."}, status=200)
 
@@ -59,17 +61,6 @@ def createUser(request):
         return JsonResponse({"message": "유저 생성 실패 status = 400"}, status=400)
     else:
         return JsonResponse({"message": "잘못된 접근 입니다. status = 400"}, status=400)
-
-
-def activeUser(request):
-    if request.method == 'PUT':
-        data = JSONParser().parse(request)
-        query = User.objects.get(email=data['email'])
-        query.is_active = True
-
-        # return JsonResponse({"message": "이메일 인증 성공 status = 201", }, status=201)
-
-    return JsonResponse({"message": "잘못된 접근 입니다. status = 400"}, status=400)
 
 
 def password_validation(password):
@@ -114,3 +105,26 @@ def active_user(request):
             return JsonResponse({"message": "User를 찾지 못함 status = 400"}, status=400)
     else:
         return JsonResponse({"message": "잘못된 접근 입니다. status = 400"}, status=400)
+
+
+def reMail(request, email):
+    if request.method == 'GET':
+        user = User.objects.get(email=email)
+        key = sendMail(email)
+        user.key = key
+        user.save()
+        return JsonResponse({"message": "이메일 재 발송 성공 status = 200"}, status=200)
+    return JsonResponse({"message": "잘못된 접근 입니다. status = 400"}, status=400)
+
+
+@csrf_exempt
+def profile_Upload(request):
+    if request.method == 'POST':
+        if request.FILES.getlist('img'):
+            user = User.objects.get(email=request.POST['email'])
+            user.image = request.FILES.getlist('img')[0]
+            user.save()
+            return JsonResponse({"message": "저장 성공"}, status=200)
+        else:
+            return JsonResponse({"message": "저장 실패"}, status=400)
+    return JsonResponse({"message": "잘못된 접근 입니다. status = 400"}, status=400)

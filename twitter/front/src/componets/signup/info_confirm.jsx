@@ -5,19 +5,56 @@ const Info_confirm = (props) => {
     const confirmRef = useRef();
 
     const [disable, setDisable] = useState(true);
-
+    const [error, setError] = useState(false);
     const handleNext = (e) => {
         e.preventDefault()
-        props.setState('profile');
+        userActive()
     }
     
-    const bakcClick = () =>{
-        props.setState('check');
-    }
 
     const handleInput = () => {
         const key = confirmRef.current.value.length;
         key > 0  ? setDisable(false) : setDisable(true)
+    }
+
+    const sandMail = () => {
+        alert(
+            `이메일 재발송`
+        );
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          
+          fetch(`http://127.0.0.1:8000/user/send/${props.email}/`, requestOptions)
+
+            .catch(error => console.log('error', error));
+    }
+
+    const userActive = () => {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({"email":`${props.email}`,
+                                    "key":`${confirmRef.current.value}`});
+
+        const requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("http://127.0.0.1:8000/user/active/", requestOptions)
+        .then(response => {
+            if(response.status === 200) {
+                props.setState('profile');
+            }
+            else {
+                setError(true);
+            }
+        })
+        .catch(error => console.log('error', error));
     }
 
     return(
@@ -38,7 +75,10 @@ const Info_confirm = (props) => {
                             <span className={styles.input_key_text}>확인 코드</span>
                             <input ref={confirmRef} className ={styles.key_input} type="text"/> 
                         </label>
-                        {/* <span className={styles.input_key_text}>이메일을 받지 못하셨나요?</span> */}
+                        {error && 
+                                <div className={styles.error_msg}>입력하신 코드가 정확하지 않습니다. 다시 시도해주세요.</div>
+                        }
+                        <span className={styles.input_key_text} onClick = {sandMail}>이메일을 받지 못하셨나요?</span>
                     </div>
                 </form>                    
             </div>

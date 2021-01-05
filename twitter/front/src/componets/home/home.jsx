@@ -3,6 +3,7 @@ import styles from './home.module.css';
 import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from "react-responsive"
 const Home = (props) => {
+
     const signupHis = useHistory();
     const loginHis = useHistory();
     const mobile = useMediaQuery({

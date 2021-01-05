@@ -186,6 +186,12 @@ select-arrow {
   margin: 2.5rem 0;
   cursor: pointer;
 }
+
+.signup_Btn:disabled {
+  background-color: #8ed0f9;
+  cursor: default;
+}
+
 .container_left {
   position: relative;
   display: inline;
@@ -222,7 +228,29 @@ select-arrow {
 }
 .input_key_text {
   color: #1da1f2;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
+
 .key_input {
   background-color: #f7f9fa;
+}
+.input_label_file {
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem 0.4rem;
+  margin: 4rem 0;
+  font-size: 1.2rem;
+}
+.img_uploader {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+}
+.upload_img {
+  display: block;
+  margin: 10px auto;
+  border-radius: 50%;
+  width: 50%;
+  height: 25rem;
 }
