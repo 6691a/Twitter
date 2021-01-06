@@ -123,8 +123,6 @@ const Info_input = (props) => {
 
     return(
         <>
-        <div>{`value:${email_Valid}`}</div>
-
             <div className={styles.background}>
                 <div className={styles.sinup}>
                     <form action=""  onSubmit={(e)=>{handleNext(e);}} >

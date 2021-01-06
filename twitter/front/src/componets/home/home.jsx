@@ -12,6 +12,7 @@ const Home = (props) => {
     
     return(
         <>
+            {props.status}
             <div className={styles.content}>
                 <div className={styles.left}>
                     <img className={styles.background_image} src="/images/twitter.svg" alt="twitter_logo"/>

@@ -1,3 +1,4 @@
+from rest_framework.permissions import IsAuthenticated
 import random
 from django.shortcuts import render
 from .models import User
@@ -128,3 +129,17 @@ def profile_Upload(request):
         else:
             return JsonResponse({"message": "저장 실패"}, status=400)
     return JsonResponse({"message": "잘못된 접근 입니다. status = 400"}, status=400)
+
+
+@csrf_exempt
+def login(request):
+    if request.method == 'POST':
+        pass
+
+
+class HelloView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        content = {'message': 'Hello, World!'}
+        return JsonResponse(content)

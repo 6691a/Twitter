@@ -28,19 +28,24 @@ const Info_profile = (props) => {
     }
 
     const upload_img = () => {
-        var formdata = new FormData();
-        formdata.append("img", fileURL);
-        formdata.append("email", '421079a@gmail.com');
-        // `${props.email}`
-        var requestOptions = {
-            method: 'POST',
-            body: formdata,
-            redirect: 'follow'
-        };
-        
-        fetch("http://127.0.0.1:8000/user/profile/", requestOptions)
-        .then(response =>  response.status == 200 && signupHis.push('/login'))
-        .catch(error => console.log('error', error));
+        if(fileURL){
+            var formdata = new FormData();
+            formdata.append("img", fileURL);
+            formdata.append("email", '421079a@gmail.com');
+            // `${props.email}`
+            var requestOptions = {
+                method: 'POST',
+                body: formdata,
+                redirect: 'follow'
+            };
+            
+            fetch("http://127.0.0.1:8000/user/profile/", requestOptions)
+            .then(response =>  response.status == 200 && signupHis.push('/login'))
+            .catch(error => console.log('error', error));
+        }
+        else {
+            signupHis.push('/login')
+        }
     }
     return(
         <div className={styles.background}>

@@ -25,3 +25,6 @@ pip install django-inlinecss
 
 #통신을 위한
 pip install django-cors-headers
+
+#JWT Token
+pip install djangorestframework-simplejwt

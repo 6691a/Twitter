@@ -5,14 +5,15 @@ import Info_input from './info_input';
 import Info_password from './info_password';
 import Info_profile from './info_profile';
 import styles from './signup.module.css';
+import API_BASE_URL from 'src/utils/path'
 
 const Signup = (props) =>{ 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword]  = useState('');
     const [birthday, setBirthday] = useState('');
-    const [state,setState] = useState('profile');
-    
+    const [state,setState] = useState('input');
+
     const create_User = (state) => {
         const myHeaders = new Headers();
     
@@ -26,11 +27,12 @@ const Signup = (props) =>{
         body: raw,
         redirect: 'follow'
         };
-    
+        
         fetch("http://127.0.0.1:8000/user/signup/", requestOptions)
         .then(response => { 
             response.status == 201 && setState(state)
             })
+        // .then(()=>{props.setLoading(false)})
         .catch(error => console.log('error', error));
         }
 
@@ -45,7 +47,7 @@ const Signup = (props) =>{
                 return <Info_password setPassword={setPassword} setState={setState}/>
 
             case 'check':
-                return <Info_check email={email} name={name} birthday={birthday} setState={setState} create_User={create_User}/>
+                return <Info_check email={email} name={name} birthday={birthday} setState={setState} create_User={create_User}  setLoading={props.setLoading}/>
 
             case 'confirm':
                 return <Info_confirm email={email} setState={setState}/>
@@ -60,7 +62,7 @@ const Signup = (props) =>{
     }
     return(
         <>  
-        {state}
+            
             {render(state)}
         </>
     )

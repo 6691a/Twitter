@@ -12,14 +12,15 @@ const Info_check = (props) => {
     const handleNext = (e) => {
         e.preventDefault()
         setDisable(true);
-        
         props.create_User("confirm");
+        // props.setLoading(true);
+
     }
 
     
     return(
             <div className={styles.background}>
-                {`dis${disable}`}
+                
                 <div className={styles.sinup}>
                     <form action="" onSubmit={handleNext}>
                         <div className={styles.title}>

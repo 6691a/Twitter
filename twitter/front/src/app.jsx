@@ -13,59 +13,39 @@ import Loading from './loading/loading';
 
 function App() {
 
-  const [status,setStatus] = useState('app');
+  const [loading, setLoading] = useState(false)
+
+  // useEffect(() => {
+
+  //   setLoading(false);
+  // }, [])
 
 
-  const render = () => {
-    switch (status) {
-      case 'loading':
-        return <Loading/>
+  return (
+    //{render}
+    <>
 
-      case 'app':
-        return(
+      {loading === true ?
+        
+        <Loading/> :
         <Router>
           <Switch>
             <Route path={['/']} exact >
-              <Home setStatus={setStatus} />
+              <Home/>
             </Route>
           
             <Route path="/login">
-              <Login setStatus={setStatus}/>
+              <Login/>
             </Route>
-    
+
             <Route path="/signup">
-              <Signup setStatus={setStatus}/>
+              <Signup setLoading ={setLoading}/>
             </Route>
             
           </Switch>
         </Router>
-      )
-      default:
-        
-    }
-  }
-
-  return (
-
-    {render}
-
-    // <Router>
-    //   <Switch>
-    //     <Route path={['/']} exact >
-    //       <Home/>
-    //     </Route>
-      
-    //     <Route path="/login">
-    //       <Login/>
-    //     </Route>
-
-    //     <Route path="/signup">
-    //       <Signup/>
-    //     </Route>
-        
-    //   </Switch>
-    // </Router>
-    
+      }
+    </>
   );
 }
 
