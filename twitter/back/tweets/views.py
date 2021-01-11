@@ -3,6 +3,7 @@ from .models import Tweet
 from django.http import JsonResponse
 from .serializer import TweetSerializer
 from rest_framework import generics
+from rest_framework import viewsets
 
 
 class View(generics.ListAPIView):

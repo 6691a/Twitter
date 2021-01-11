@@ -4,8 +4,7 @@ import Info_confirm from './info_confirm';
 import Info_input from './info_input';
 import Info_password from './info_password';
 import Info_profile from './info_profile';
-import styles from './signup.module.css';
-import API_BASE_URL from 'src/utils/path'
+import {API_BASE_URL} from '../../utills/path';
 
 const Signup = (props) =>{ 
     const [name, setName] = useState('');
@@ -13,6 +12,7 @@ const Signup = (props) =>{
     const [password, setPassword]  = useState('');
     const [birthday, setBirthday] = useState('');
     const [state,setState] = useState('input');
+    const history = props.history;
 
     const create_User = (state) => {
         const myHeaders = new Headers();
@@ -28,7 +28,7 @@ const Signup = (props) =>{
         redirect: 'follow'
         };
         
-        fetch("http://127.0.0.1:8000/user/signup/", requestOptions)
+        fetch(API_BASE_URL +"/user/signup/", requestOptions)
         .then(response => { 
             response.status == 201 && setState(state)
             })
@@ -53,7 +53,7 @@ const Signup = (props) =>{
                 return <Info_confirm email={email} setState={setState}/>
                 
             case 'profile':
-                return <Info_profile email={email} setState={setState}/>
+                return <Info_profile email={email} setState={setState} history={history}/>
 
             default :
                 return <Info_input setEmail={setEmail} setName={setName} setBirthday={setBirthday}/>
@@ -62,7 +62,6 @@ const Signup = (props) =>{
     }
     return(
         <>  
-            
             {render(state)}
         </>
     )

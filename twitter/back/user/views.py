@@ -11,6 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
 from rest_framework.parsers import FileUploadParser
+from rest_framework.permissions import AllowAny
+from rest_framework import status
 
 # token
 from rest_framework.authtoken.models import Token
@@ -142,4 +144,22 @@ class HelloView(APIView):
 
     def get(self, request):
         content = {'message': 'Hello, World!'}
+        print(request.user)
         return JsonResponse(content)
+
+
+class UserCreateView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+
+        data = request.data
+        data['key'] = sendMail(data['email'])
+        serializer = CreateUserSerializer(data=data)
+
+        if serializer.is_valid():
+            user = serializer.save()
+            print(user.email)
+            content = {'email': user.email}
+            return JsonResponse(content, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

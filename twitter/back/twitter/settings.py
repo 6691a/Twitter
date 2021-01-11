@@ -162,52 +162,48 @@ DEFAULT_FROM_EMAIL = 'EMAIL_HOST_USER'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        # 인증된 사용자만 접근 가능
+        # 'rest_framework.permissions.IsAuthenticated',
+        # 관리자만 접근 가능
+        # 'rest_framework.permissions.IsAdminUser',
+        #  모두 접근 가능
+        # 'rest_framework.permissions.AllowAny',
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    )
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ]
 }
 
-# 옵션 설명
-# https://jpadilla.github.io/django-rest-framework-jwt/
-JWT_AUTH = {
-    'JWT_SECRET_KEY': 'SECRET_KEY',
-    'JWT_ALGORITHM': 'HS256',
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
-    'JWT_ALLOW_REFRESH': False,
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': False,
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': 'SECRET_KEY',
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+
+    'JTI_CLAIM': 'jti',
+
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-# JWT_AUTH = {
-#     'JWT_ENCODE_HANDLER':
-#     'rest_framework_jwt.utils.jwt_encode_handler',
-#     'JWT_DECODE_HANDLER':
-#     'rest_framework_jwt.utils.jwt_decode_handler',
-#     'JWT_PAYLOAD_HANDLER':
-#     'rest_framework_jwt.utils.jwt_payload_handler',
-#     'JWT_PAYLOAD_GET_USER_ID_HANDLER':
-#     'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
-#     'JWT_RESPONSE_PAYLOAD_HANDLER':
-#     'rest_framework_jwt.utils.jwt_response_payload_handler',
-
-#     'JWT_SECRET_KEY': 'SECRET_KEY',
-#     'JWT_GET_USER_SECRET_KEY': None,
-#     'JWT_PUBLIC_KEY': None,
-#     'JWT_PRIVATE_KEY': None,
-#     'JWT_ALGORITHM': 'HS256',
-#     'JWT_VERIFY': True,
-#     'JWT_VERIFY_EXPIRATION': True,
-#     'JWT_LEEWAY': 0,
-#     'JWT_EXPIRATION_DELTA': timedelta(days=30),
-#     'JWT_AUDIENCE': None,
-#     'JWT_ISSUER': None,
-#     'JWT_ALLOW_REFRESH': True,  # 만료되지 않은 토큰을 새로고침으로 갱신
-#     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=30),
-#     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-#     'JWT_AUTH_COOKIE': None,
-# }
-
 
 # CORS
 # CORS_ORIGIN_ALLOW_ALL = True

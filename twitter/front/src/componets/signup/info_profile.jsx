@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import styles from './info_input.module.css';
+import {API_BASE_URL} from '../../utills/path';
 import { useHistory } from 'react-router-dom';
 
 const Info_profile = (props) => {
 
 
-    const signupHis = useHistory();
+    const history = useHistory();
+
     const [fileURL,setFileURL] =  useState()
     const [imgData, setImgData] = useState("https://twitter-image-server.s3.ap-northeast-2.amazonaws.com/media/default/default_profile_400x400.png")
     
@@ -31,23 +33,24 @@ const Info_profile = (props) => {
         if(fileURL){
             var formdata = new FormData();
             formdata.append("img", fileURL);
-            formdata.append("email", '421079a@gmail.com');
-            // `${props.email}`
+            formdata.append("email", props.email);
             var requestOptions = {
                 method: 'POST',
                 body: formdata,
                 redirect: 'follow'
             };
             
-            fetch("http://127.0.0.1:8000/user/profile/", requestOptions)
-            .then(response =>  response.status == 200 && signupHis.push('/login'))
+            
+            fetch(`${API_BASE_URL}/user/profile/`, requestOptions)
+            .then(response =>  response.status == 200 && history.push('/login'))
             .catch(error => console.log('error', error));
         }
-        else {
-            signupHis.push('/login')
-        }
+        // else {
+        //     props.history.push('/login')
+        // }
     }
     return(
+        
         <div className={styles.background}>
             {`url: ${fileURL}`}
             <div className={styles.sinup}>

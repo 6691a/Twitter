@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './info_input.module.css';
+import {API_BASE_URL} from '../../utills/path';
 
 const Info_input = (props) => {
     const emailRef = useRef();
@@ -63,7 +64,7 @@ const Info_input = (props) => {
         };
 
         if(emailRef.current.value) {
-            fetch(`http://127.0.0.1:8000/user/find/${emailRef.current.value}/`, requestOptions)
+            fetch(`${API_BASE_URL}/user/find/${emailRef.current.value}/`, requestOptions)
             .then(response => {
                 if(response.status === 201) {
                     setEmail_Valid(false);

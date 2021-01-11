@@ -1,0 +1,33 @@
+.contents_left {
+  width: 30%;
+  border-right: 0.5px solid #ebeef0;
+
+  padding-left: 10%;
+}
+.contents_right {
+  width: 70%;
+  color: black;
+}
+
+.logo_image {
+  margin-top: 2rem;
+  width: 2.9rem;
+}
+
+img {
+  width: 50px;
+}
+
+@media screen and (max-width: 800px) {
+  .contents_left {
+    width: 15%;
+    text-align: center;
+    border-right: solid;
+    border-right: 0.5px solid #ebeef0;
+    padding-left: 0%;
+  }
+  .contents_right {
+    width: 85%;
+    color: black;
+  }
+}

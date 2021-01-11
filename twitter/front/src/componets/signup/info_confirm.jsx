@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styles from './info_input.module.css';
+import {API_BASE_URL} from '../../utills/path';
 
 const Info_confirm = (props) => {
     const confirmRef = useRef();
@@ -26,7 +27,7 @@ const Info_confirm = (props) => {
             redirect: 'follow'
           };
           
-          fetch(`http://127.0.0.1:8000/user/send/${props.email}/`, requestOptions)
+          fetch(`${API_BASE_URL}/user/send/${props.email}/`, requestOptions)
 
             .catch(error => console.log('error', error));
     }

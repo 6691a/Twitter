@@ -1,6 +1,10 @@
 from django.urls import path
 from .views import *
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 urlpatterns = [
 
@@ -12,9 +16,10 @@ urlpatterns = [
     path('profile/', profile_Upload),
     path('hello/', HelloView.as_view(), name='hello'),
 
-    path('jwt-auth/', obtain_jwt_token),
-    path('jwt-auth/refresh/', refresh_jwt_token),
-    path('jwt-auth/verify/', verify_jwt_token),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 
+
+    path('register/', UserCreateView.as_view())
 ]

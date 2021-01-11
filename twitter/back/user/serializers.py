@@ -8,21 +8,37 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['email', 'user_id', 'birthday', 'image', 'is_active', 'key']
 
 
-class CreateUserSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True)
-    birthday = serializers.DateField(required=True)
-    password = serializers.CharField(required=True)
-    key = serializers.CharField(required=True)
+class CreateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['email', 'birthday', 'password', 'key']
+        extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, data):
         user = User.objects.create(
             email=data['email'],
             birthday=data['birthday'],
-            key=data['key']
+            key=data['key'],
         )
         user.set_password(data['password'])
         user.save()
         return user
+
+        # class CreateUserSerializer(serializers.Serializer):
+        # email = serializers.EmailField(required=True)
+        # birthday = serializers.DateField(required=True)
+        # password = serializers.CharField(required=True)
+        # key = serializers.CharField(required=True)
+
+        # def create(self, data):
+        #     user = User.objects.create(
+        #         email=data['email'],
+        #         birthday=data['birthday'],
+        #         key=data['key']
+        #     )
+        #     user.set_password(data['password'])
+        #     user.save()
+        #     return user
 
 
 class UserImageSerializer(serializers.ModelSerializer):
