@@ -19,16 +19,14 @@ const Home = (props) => {
 
 
     const mobile = useMediaQuery({
-        query : "(max-width:800px)"
+        query : "(max-width:1300px)"
     });
 
     return(
-       
         <div>
-            {}
-            {`12${active}`}
             {!mobile && 
                 <div className={styles.contents_left}>
+                    
                     <div className={styles.logo_bg}>
                         <img className={styles.logo_image} src="/images/twitter.svg" alt="twitter_logo"/>
                     </div>
@@ -97,7 +95,23 @@ const Home = (props) => {
                         <li className={styles.contents_item}>
                             <button className={styles.tweet_Btn} type="submit">트윗</button>
                         </li>
+                        
                     </ul>
+
+
+                    <div className={styles.user_bg}>
+                        <img src="/images/default_profile_400x400.png" alt=""/>
+                        <div className={styles.user_info}>
+                            <div className={styles.user_name}>username</div>
+                            <span className={styles.user_id}>@123123123id</span>
+                        </div>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M19.39 14.882c-1.58 0-2.862-1.283-2.862-2.86s1.283-2.862 2.86-2.862 2.862 1.283 2.862 2.86-1.284 2.862-2.86 2.862zm0-4.223c-.75 0-1.362.61-1.362 1.36s.61 1.36 1.36 1.36 1.362-.61 1.362-1.36-.61-1.36-1.36-1.36zM12 14.882c-1.578 0-2.86-1.283-2.86-2.86S10.42 9.158 12 9.158s2.86 1.282 2.86 2.86S13.578 14.88 12 14.88zm0-4.223c-.75 0-1.36.61-1.36 1.36s.61 1.362 1.36 1.362 1.36-.61 1.36-1.36-.61-1.363-1.36-1.363zm-7.39 4.223c-1.577 0-2.86-1.283-2.86-2.86S3.034 9.16 4.61 9.16s2.862 1.283 2.862 2.86-1.283 2.862-2.86 2.862zm0-4.223c-.75 0-1.36.61-1.36 1.36s.61 1.36 1.36 1.36 1.362-.61 1.362-1.36-.61-1.36-1.36-1.36z"></path>
+                            </g>
+                        </svg>
+                    </div>
+
                 </div>
             }
 
@@ -152,6 +166,7 @@ const Home = (props) => {
                                 </svg>
                             </div>
                         </li>
+
                         <li className={styles.contents_item}  onClick={()=>{setActive(status["profile"])}}>
                             <div className={active === status["profile"] ? styles.li_bg_active : styles.li_bg}>
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -176,12 +191,14 @@ const Home = (props) => {
                             </div>
                         </li>
                     </ul>
+                    
+                    <div className={styles.user_bg}>
+                        <img src="/images/default_profile_400x400.png" alt=""/>
+                    </div>
+
                 </div>
             }
-           
 
-       
-        
             <div className={styles.contents_right}>
             </div>
         </div>
