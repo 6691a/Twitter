@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './twitter.module.css';
 import { useHistory } from 'react-router-dom';
-import { useMediaQuery } from "react-responsive"
+import { useMediaQuery } from "react-responsive";
 const Twitter = (props) => {
 
     const history = useHistory();
@@ -11,7 +11,6 @@ const Twitter = (props) => {
     
     return(
         <>
-
             <div className={styles.content}>
                 <div className={styles.left}>
                     <img className={styles.background_image} src="/images/twitter.svg" alt="twitter_logo"/>
