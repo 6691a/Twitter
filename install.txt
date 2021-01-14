@@ -28,3 +28,6 @@ pip install django-cors-headers
 
 #JWT Token
 pip install djangorestframework-simplejwt
+
+#Text
+yarn add react-textarea-autosize

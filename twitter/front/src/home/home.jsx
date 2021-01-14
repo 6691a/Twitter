@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './home.module.css';
 import styles_left from './home_left.module.css';
 import styles_right from './home_right.module.css';
-
+import TextareaAutosize from 'react-textarea-autosize';
 
 import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from "react-responsive";
@@ -212,7 +212,6 @@ const Home = (props) => {
                 <div className={styles_right.contents_main}>
                     <div className={styles_right.content_title}>
                         <span className={styles_right.title_text}>홈</span>
-
                         <div className={styles_right.title_svg_bg}>
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <g>
@@ -223,13 +222,61 @@ const Home = (props) => {
                     </div>
 
                     <div className={styles_right.content_tweet}>
-                        <img className={styles_right.content_user_img} src="/images/default_profile_400x400.png" alt=""/>
                         <div className={styles_right.content_position}>
-                            <textarea type="text" placeholder='무슨 일이 일어나고 있나요?'/>
-                            <button>트윗</button>
+                            <div  className={styles_right.content_user_position}>
+                                <img className={styles_right.content_user_img} src="/images/default_profile_400x400.png" alt=""/>
+                            </div>
+                            <div className={styles_right.content_text}>
+                                <TextareaAutosize 
+                                minRows={1}
+                                maxRows={20}
+                                placeholder="무슨 일이 일어나고 있나요?"
+                                />
+                            </div>
                         </div>
-                    </div>
 
+                        <div className={styles_right.content_tweet_submit}>
+                                <ul>
+                                    <li className={styles_right.content_tweet_submit_svg_bg}>
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <path d="M19.75 2H4.25C3.01 2 2 3.01 2 4.25v15.5C2 20.99 3.01 22 4.25 22h15.5c1.24 0 2.25-1.01 2.25-2.25V4.25C22 3.01 20.99 2 19.75 2zM4.25 3.5h15.5c.413 0 .75.337.75.75v9.676l-3.858-3.858c-.14-.14-.33-.22-.53-.22h-.003c-.2 0-.393.08-.532.224l-4.317 4.384-1.813-1.806c-.14-.14-.33-.22-.53-.22-.193-.03-.395.08-.535.227L3.5 17.642V4.25c0-.413.337-.75.75-.75zm-.744 16.28l5.418-5.534 6.282 6.254H4.25c-.402 0-.727-.322-.744-.72zm16.244.72h-2.42l-5.007-4.987 3.792-3.85 4.385 4.384v3.703c0 .413-.337.75-.75.75z"></path>
+                                        </g>
+                                        </svg>
+                                    </li>
+                                    {/* <li className={styles_right.content_tweet_submit_svg_bg}>
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <path d="M19.75 2H4.25C3.01 2 2 3.01 2 4.25v15.5C2 20.99 3.01 22 4.25 22h15.5c1.24 0 2.25-1.01 2.25-2.25V4.25C22 3.01 20.99 2 19.75 2zM4.25 3.5h15.5c.413 0 .75.337.75.75v9.676l-3.858-3.858c-.14-.14-.33-.22-.53-.22h-.003c-.2 0-.393.08-.532.224l-4.317 4.384-1.813-1.806c-.14-.14-.33-.22-.53-.22-.193-.03-.395.08-.535.227L3.5 17.642V4.25c0-.413.337-.75.75-.75zm-.744 16.28l5.418-5.534 6.282 6.254H4.25c-.402 0-.727-.322-.744-.72zm16.244.72h-2.42l-5.007-4.987 3.792-3.85 4.385 4.384v3.703c0 .413-.337.75-.75.75z"></path>
+                                        </g>
+                                        </svg>
+                                    </li> */}
+                                </ul>
+                                <button className={styles_right.content_tweet_submit_Btn}>트윗</button>
+                        </div> 
+                    </div>
+                    
+                    <div className={styles_right.tweets}>
+                        <div className={styles_right.blank}></div>
+                        <div className={styles_right.tweet}>
+                            <div className={styles_right.content_user_position}>
+                                    <img className={styles_right.content_user_img} src="/images/default_profile_400x400.png" alt=""/>
+                            </div>
+                            <div  className={styles_right.tweet_data}>
+                            <span>username</span>
+                                    <span>@123123123id</span>
+                            </div>
+                           
+
+                        </div>
+
+                        <div className={styles_right.tweet}>
+                            <div className={styles_right.content_user_position}>
+                                    <img className={styles_right.content_user_img} src="/images/default_profile_400x400.png" alt=""/>
+                            </div>
+                        </div>
+                        <div className={styles_right.blank}></div>
+                    </div>
                 </div>
             </div>
         </>
