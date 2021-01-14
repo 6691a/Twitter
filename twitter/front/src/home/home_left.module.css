@@ -1,0 +1,173 @@
+ul {
+  list-style: none;
+  padding: 0;
+}
+.main_style {
+  display: inline-block;
+}
+
+.logo_bg {
+  display: inline-block;
+  margin: 0 1rem;
+  margin-top: 1rem;
+}
+
+.logo_bg:hover {
+  border-radius: 50%;
+  background-color: #e8f5fe;
+}
+
+.logo_image {
+  padding: 1rem;
+  width: 5rem;
+}
+
+.left_position {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.li_image {
+  width: 2.6rem;
+}
+
+.li_text {
+  margin-left: 2rem;
+  font-size: 1.9rem;
+  font-weight: bold;
+}
+
+.li_bg {
+  display: inline-block;
+  padding: 1rem 2rem;
+}
+
+.li_bg:hover {
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  border-radius: 45px;
+  background-color: #e8f5fe;
+}
+
+.li_bg_active {
+  display: inline-block;
+  padding: 1rem 2rem;
+  color: #1da1f2;
+}
+
+.li_bg_active:hover {
+  border-radius: 50%;
+  border-radius: 45px;
+  background-color: #e8f5fe;
+}
+
+.li_bg_active svg path {
+  fill: #1da1f2;
+}
+
+.li_bg:hover .li_text {
+  color: #1da1f2;
+}
+
+.li_bg:hover svg path {
+  fill: #1da1f2;
+}
+
+.contents_item {
+  cursor: pointer;
+  padding: 1rem 0;
+}
+
+svg {
+  width: 2.6rem;
+  vertical-align: bottom;
+}
+
+.tweet_bg {
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #1da1f2;
+}
+
+.tweet_bg:hover {
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #1a91da;
+}
+
+.tweet_bg svg {
+  width: 4.5rem;
+  padding: 1rem;
+}
+
+.tweet_bg svg path {
+  fill: white;
+}
+
+.tweet_Btn {
+  background-color: #1da1f2;
+  height: 4.5rem;
+  width: 80%;
+  border: none;
+  border-radius: 50%;
+  border-radius: 45px;
+  outline: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.7rem;
+  margin: 1rem 0;
+}
+
+.tweet_Btn:hover {
+  background-color: #1a91da;
+}
+
+/* USER */
+.user_bg {
+  padding: 1rem 2rem;
+  display: flex;
+  width: 95%;
+}
+
+.user_bg:hover {
+  border-radius: 50%;
+  border-radius: 45px;
+  background-color: #e8f5fe;
+}
+
+.user_bg img {
+  width: 4rem;
+  border-radius: 50%;
+}
+.user_info {
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  width: 85%;
+}
+
+.user_name {
+  font-weight: bold;
+}
+
+.user_id {
+  color: #5b7083;
+}
+
+@media screen and (max-width: 1300px) {
+  .user_block {
+    width: 100%;
+  }
+  .user_bg {
+    display: inline-block;
+    width: auto;
+    padding: 1rem;
+  }
+
+  .user_bg:hover {
+    border-radius: 50%;
+    background-color: #e8f5fe;
+  }
+}
