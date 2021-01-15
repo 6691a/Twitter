@@ -4,9 +4,13 @@ import Login from './componets/login/login';
 import Signup from './componets/signup/signup';
 import { useEffect, useState } from 'react';
 import { getByText } from '@testing-library/react';
-import Loading from './loading/loading';
+
 import Twitter from './componets/twitter/twitter';
-import Home from './home/home';
+
+import Contents from './contents/contents';
+
+
+
 
 
 
@@ -22,14 +26,10 @@ function App() {
     image: '',
     birthday: '',
   });
-  // useEffect(() => {
 
-  //   setLoading(false);
-  // }, [])
 
 
   return (
-    //{render}
     <>
 
         <Router>
@@ -47,7 +47,7 @@ function App() {
             </Route>
             
             <Route path="/home">
-              <Home  user={user}/>
+              <Contents/>
             </Route>
 
           </Switch>
