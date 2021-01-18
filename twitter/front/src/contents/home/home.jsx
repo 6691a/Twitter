@@ -7,7 +7,6 @@ const Home = (props) => {
 
     return (
         <div>
-            <Navbar_left/>
             <Home_contents/>
         </div>
 

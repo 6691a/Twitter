@@ -4,13 +4,8 @@
   height: 100vh;
   border-right: 0.5px solid #ebeef0;
   padding-left: 8%;
-  position: relative;
-}
-
-.contents_right {
-  display: inline-block;
-  width: 73%;
-  height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 @media screen and (max-width: 1300px) {

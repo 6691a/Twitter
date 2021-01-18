@@ -30,6 +30,7 @@ const Navbar_left = (props) => {
     return(
         <>
             {!mobile && 
+               
                 <div className={styles.contents_left}>
                     
                     <div className={styles_left.logo_bg}>
@@ -111,6 +112,7 @@ const Navbar_left = (props) => {
                             <div className={styles_left.user_info}>
                                 <div className={styles_left.user_name}>username</div>
                                 <span className={styles_left.user_id}>@123123123id</span>
+                                
                             </div>
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <g>

@@ -70,16 +70,41 @@ const Home_contents = (props) => {
                     
                     <div className={styles_right.tweets}>
                         <div className={styles_right.blank}></div>
+
                         <div className={styles_right.tweet}>
                             <div className={styles_right.content_user_position}>
                                     <img className={styles_right.content_user_img} src="/images/default_profile_400x400.png" alt=""/>
                             </div>
                             <div  className={styles_right.tweet_data}>
-                            <span>username</span>
-                                    <span>@123123123id</span>
-                            </div>
-                           
+                                <div className={styles_right.tweet_data_style}>
+                                    <div className={styles_right.tweet_uses_style}>
+                                    <span className={styles_right.tweet_data_username}>username</span>
+                                    <span className={styles_right.tweet_data_id}>@123123123id</span>
+                                    </div>
+                                    <div className={styles_right.tweet_svg_bg}>
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <path d="M19.39 14.882c-1.58 0-2.862-1.283-2.862-2.86s1.283-2.862 2.86-2.862 2.862 1.283 2.862 2.86-1.284 2.862-2.86 2.862zm0-4.223c-.75 0-1.362.61-1.362 1.36s.61 1.36 1.36 1.36 1.362-.61 1.362-1.36-.61-1.36-1.36-1.36zM12 14.882c-1.578 0-2.86-1.283-2.86-2.86S10.42 9.158 12 9.158s2.86 1.282 2.86 2.86S13.578 14.88 12 14.88zm0-4.223c-.75 0-1.36.61-1.36 1.36s.61 1.362 1.36 1.362 1.36-.61 1.36-1.36-.61-1.363-1.36-1.363zm-7.39 4.223c-1.577 0-2.86-1.283-2.86-2.86S3.034 9.16 4.61 9.16s2.862 1.283 2.862 2.86-1.283 2.862-2.86 2.862zm0-4.223c-.75 0-1.36.61-1.36 1.36s.61 1.36 1.36 1.36 1.362-.61 1.362-1.36-.61-1.36-1.36-1.36z"></path>
+                                        </g>
+                                    </svg>
+                                    </div>
 
+                                </div>
+                                <div className={styles_right.tweet_data_contents}> 
+                                    <div className={styles_right.tweet_data_text}>작성 내용 노출댐</div>
+                                    <div className={styles_right.tweet_img_bg}>
+                                        <img className={styles_right.tweet_data_img} src="/images/test/macbook-200521-195335.png" alt=""/>
+                                        <img className={styles_right.tweet_data_img} src="/images/test/macbook-200521-195335.png" alt=""/>
+                                        <img className={styles_right.tweet_data_img} src="/images/test/macbook-200521-195335.png" alt=""/>
+                                        <img className={styles_right.tweet_data_img} src="/images/test/macbook-200521-195335.png" alt=""/>
+
+                                    </div>
+                                </div>
+                                
+                                <div>
+
+                                </div>
+                            </div>
                         </div>
 
                         <div className={styles_right.tweet}>
