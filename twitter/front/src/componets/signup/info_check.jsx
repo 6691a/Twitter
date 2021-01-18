@@ -13,14 +13,12 @@ const Info_check = (props) => {
         e.preventDefault()
         setDisable(true);
         props.create_User("confirm");
-        // props.setLoading(true);
 
     }
 
     
     return(
             <div className={styles.background}>
-                
                 <div className={styles.sinup}>
                     <form action="" onSubmit={handleNext}>
                         <div className={styles.title}>

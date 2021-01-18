@@ -30,7 +30,6 @@ const Navbar_left = (props) => {
     return(
         <>
             {!mobile && 
-               
                 <div className={styles.contents_left}>
                     
                     <div className={styles_left.logo_bg}>
