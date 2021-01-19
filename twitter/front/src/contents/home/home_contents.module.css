@@ -1,10 +1,4 @@
 /* right */
-.contents_right {
-  display: flex;
-  width: 73%;
-  height: 100vh;
-  margin-left: 27%;
-}
 
 .contents_main {
   width: 50%;
@@ -219,9 +213,6 @@
 }
 
 @media screen and (max-width: 1300px) {
-  .contents_right {
-    margin-left: 15%;
-  }
   .contents_main {
     width: 100%;
 

@@ -8,6 +8,12 @@
   /* position: sticky; */
   top: 0;
 }
+.contents_right {
+  display: flex;
+  width: 73%;
+  height: 100vh;
+  margin-left: 27%;
+}
 
 @media screen and (max-width: 1300px) {
   .contents_left {
@@ -17,5 +23,8 @@
     border-right: solid;
     border-right: 0.5px solid #ebeef0;
     padding-left: 0%;
+  }
+  .contents_right {
+    margin-left: 15%;
   }
 }

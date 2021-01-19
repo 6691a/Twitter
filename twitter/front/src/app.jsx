@@ -10,6 +10,7 @@ import Contents from './contents/contents';
 
 
 function App() {
+  const path = document.location.pathname
   const [user, setUser] = useState({
     email: '123',
     name: '',
@@ -19,7 +20,6 @@ function App() {
 
   return (
     <>
-
         <Router>
           <Switch>
             <Route path={['/']} exact >
@@ -35,7 +35,22 @@ function App() {
             </Route>
             
             <Route path="/home">
-              <Contents/>
+              <Contents path={'home'}/>
+            </Route>
+
+            <Route path="/search">
+              <Contents path={'search'}/>
+            </Route>
+
+            <Route path="/messages">
+              <Contents path={'messages'}/>
+            </Route>
+
+            <Route path="/profile">
+              <Contents path={'profile'}/>
+            </Route>
+            <Route path="*">
+              {/* <div>없는 페이지</div> */}
             </Route>
 
           </Switch>

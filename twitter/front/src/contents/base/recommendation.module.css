@@ -1,0 +1,78 @@
+/* frame */
+.recommendation_style_top,
+.recommendation_style_bottom,
+.recommendation_style_body {
+  padding: 1rem 1.5rem;
+  background-color: #f7f9fa;
+}
+
+.recommendation_style_top {
+  font-size: 2.2rem;
+  border-radius: 15px 15px 0 0;
+  border-bottom: 0.5px solid #ebeef0;
+}
+.recommendation_style_body {
+  border-bottom: 0.5px solid #ebeef0;
+}
+.recommendation_style_body:hover {
+  background-color: #eff1f2;
+}
+
+.follow_Btn {
+  width: 35%;
+  border: 1px solid #1da1f2;
+  border-radius: 50%;
+  border-radius: 45px;
+
+  outline: none;
+  color: #1da1f2;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.follow_Btn:hover {
+  background-color: #dae8f2;
+}
+
+.recommendation_style_bottom {
+  border-radius: 0px 0px 15px 15px;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  color: #31a9f3;
+  /* border-bottom: 0.5px solid #ebeef0; */
+}
+
+.style_between {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+/* main */
+.recommendation {
+  margin: 1.5rem;
+}
+
+.recommendation_text {
+  font-weight: bold;
+}
+
+.user_info {
+  font-size: 2rem;
+  margin-left: 1rem;
+  display: flex;
+  font-size: 1.5rem;
+}
+.user_info img {
+  width: 5rem;
+  border-radius: 50%;
+}
+.user_name {
+  font-weight: bold;
+}
+.leftMargin {
+  margin-left: 1rem;
+}

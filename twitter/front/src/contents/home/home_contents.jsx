@@ -4,18 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from "react-responsive";
 
 import styles_right from './home_contents.module.css';
+import styles from '../base/navbar.module.css';
+
 import TextareaAutosize from 'react-textarea-autosize';
 import Home_tweet from './home_tweet';
 import Home_serch from './home_serch';
 
 const Home_contents = (props) => {
     const tweetRef = useRef();
-    const status = {
-        'home':"home",
-        'search': "search",
-        'mail': "mail",
-        'profile': "profile"
-    };
 
     const [data, setData] = useState(
     {
@@ -46,7 +42,7 @@ const Home_contents = (props) => {
     });
 
     return(
-        <div className={styles_right.contents_right}>
+        <div className={styles.contents_right}>
                 <div className={styles_right.contents_main}>
                     <div className={styles_right.content_title}>
                         <span className={styles_right.title_text}>홈</span>
