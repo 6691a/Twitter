@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar_left from './base/navbar_left';
 import Home from './home/home';
+import Home_serch from './home/home_serch';
 
 const Contents = (props) =>{
 
@@ -8,6 +9,7 @@ const Contents = (props) =>{
         <>
         <Navbar_left/>
         <Home/>
+
         </>
     )
 };

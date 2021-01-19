@@ -1,6 +1,6 @@
 /* right */
 .contents_right {
-  display: inline-block;
+  display: flex;
   width: 73%;
   height: 100vh;
   margin-left: 27%;

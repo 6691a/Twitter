@@ -3,31 +3,19 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Login from './componets/login/login';
 import Signup from './componets/signup/signup';
 import { useEffect, useState } from 'react';
-import { getByText } from '@testing-library/react';
 
 import Twitter from './componets/twitter/twitter';
 
 import Contents from './contents/contents';
 
 
-
-
-
-
-
-
 function App() {
-
-
-
   const [user, setUser] = useState({
     email: '123',
     name: '',
     image: '',
     birthday: '',
   });
-
-
 
   return (
     <>
