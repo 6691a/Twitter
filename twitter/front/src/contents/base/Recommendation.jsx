@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from './button';
+
 import styles from './recommendation.module.css';
 
 const Recommendation = (props) => {
@@ -16,7 +18,9 @@ const Recommendation = (props) => {
                                 <div className={styles.user_name}>1</div>
                                 <div className={styles.user_id}>@1</div> 
                             </div>
-                            <button className={styles.follow_Btn}>팔로우</button>
+                            
+                            <Button text ="팔로우"/>
+
                         </div>
                     </div>
                 </div>  
@@ -30,7 +34,8 @@ const Recommendation = (props) => {
                                 <div className={styles.user_name}>2</div>
                                 <div className={styles.user_id}>@2</div> 
                             </div>
-                            <button className={styles.follow_Btn}>팔로우</button>
+                            <Button text ="팔로우"/>
+                            
                         </div>
                     </div>
                 </div>  

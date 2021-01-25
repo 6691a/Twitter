@@ -15,11 +15,12 @@ const  Profile = (props) => {
 
     
     return(
+
         <div className={base_style.contents_right}>
             <div className={styles.main}>
                 <Header username = "username" tweet_count="1"/>
 
-                <User_info profile_img="/images/test/macbook-200521-195335.png" />
+                <User_info follow="1" follower="1" username="155555" userid="@123" profile_img="/images/test/macbook-200521-195335.png" about_me="123"/>
             </div>
 
             {   
