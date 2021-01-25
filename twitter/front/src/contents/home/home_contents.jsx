@@ -9,6 +9,7 @@ import styles from '../base/navbar.module.css';
 import TextareaAutosize from 'react-textarea-autosize';
 import Home_tweet from './home_tweet';
 import Home_serch from './home_serch';
+import Recommendation from '../base/Recommendation';
 
 const Home_contents = (props) => {
     const tweetRef = useRef();
@@ -91,9 +92,12 @@ const Home_contents = (props) => {
                     }
             </div>
             {
-                !mobile? <Home_serch/>:<></>
+                !mobile? <Home_serch width="35%"> <Recommendation/> </Home_serch>
+
+                :
+                <></>
             }
-            
+
         </div>
 
     )

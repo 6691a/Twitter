@@ -1,0 +1,37 @@
+.main {
+  padding-left: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid #ebeef0;
+}
+
+.bg {
+  padding: 0.5rem;
+  height: 100%;
+}
+
+.bg:hover {
+  border-radius: 50%;
+  background-color: #e8f5fe;
+}
+.main svg {
+  width: 20px;
+}
+.main svg path {
+  fill: #1da1f2;
+}
+.contents {
+  padding-left: 2rem;
+}
+.username {
+  font-size: 2rem;
+  font-weight: bold;
+  /* font-family: inherit; */
+}
+
+.tweet_count {
+  color: #5b7083;
+  font-size: 1.1rem;
+}

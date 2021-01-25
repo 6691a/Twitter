@@ -1,4 +1,5 @@
 /* frame */
+
 .recommendation_style_top,
 .recommendation_style_bottom,
 .recommendation_style_body {
@@ -53,7 +54,7 @@
 
 /* main */
 .recommendation {
-  margin: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .recommendation_text {

@@ -2,9 +2,14 @@ import React from 'react';
 import Recommendation from '../base/Recommendation';
 import styles from './home_serch.module.css';
 
-const Home_serch = (props) => {
+
+const Home_serch = ({children,width, padding}) => {
+    const style = {
+        width: width,
+        padding: '0 1.5rem',
+    } 
     return(
-        <div className={styles.main}>
+        <div style={style}>
             <div className={styles.serch}>
                 <form action="">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -15,45 +20,7 @@ const Home_serch = (props) => {
                     <input type="text"/>
                 </form>
             </div>
-
-            <Recommendation/>
-            {/* <div className={styles.referee}>
-                <div className={styles.referee_style_top}>
-                    <span className={styles.referee_text}>팔로우 추천</span>
-                </div>
-                <div className={styles.referee_style_body}>
-                    <div className={styles.user_info}>
-                    <img src="/images/default_profile_400x400.png" alt=""/>
-                        
-                        <div className={styles.style_between}>
-                            <div className={styles.leftMargin}>
-                                <div className={styles.user_name}>1</div>
-                                <div className={styles.user_id}>@1</div> 
-                            </div>
-                            <button className={styles.follow_Btn}>팔로우</button>
-                        </div>
-                    </div>
-                </div>  
-
-                <div className={styles.referee_style_body}>
-                    <div className={styles.user_info}>
-                    <img src="/images/default_profile_400x400.png" alt=""/>
-                        
-                        <div className={styles.style_between}>
-                            <div className={styles.leftMargin}>
-                                <div className={styles.user_name}>2</div>
-                                <div className={styles.user_id}>@2</div> 
-                            </div>
-                            <button className={styles.follow_Btn}>팔로우</button>
-                        </div>
-                    </div>
-                </div>  
-
-                <div className={styles.referee_style_bottom}>
-                    <span className={styles.referee_text}>더 보기</span>
-                </div>
-
-            </div> */}
+            {children}
         </div>
     )
 };
