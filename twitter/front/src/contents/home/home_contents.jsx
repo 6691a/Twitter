@@ -92,7 +92,7 @@ const Home_contents = (props) => {
                     }
             </div>
             {
-                !mobile? <Home_serch width="35%"> <Recommendation/> </Home_serch>
+                !mobile? <Home_serch width="35%" placeholder="사용자 및 그룹"> <Recommendation/> </Home_serch>
 
                 :
                 <></>
